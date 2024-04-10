@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import PhotosUI
 
 import RxSwift
+import RxCocoa
+import RxGesture
 import SnapKit
 import Then
 
@@ -16,11 +19,12 @@ final class ViewController: UIViewController {
   // MARK: - Properties
 
   private let compressTypes = CompressType.allCases
+  private let disposeBag = DisposeBag()
 
   // MARK: - UI
 
   private let imageView = UIImageView().then {
-    $0.backgroundColor = .orange
+    $0.backgroundColor = .systemGray5
   }
 
   private let compressTypeButton = UIButton(type: .system).then {
@@ -67,10 +71,13 @@ final class ViewController: UIViewController {
     $0.distribution = .fillEqually
   }
 
+  // MARK: - Life Cycle
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
     setupLayout()
+    bind()
   }
 
   private func setupUI() {
@@ -114,6 +121,14 @@ final class ViewController: UIViewController {
       make.height.equalTo(44)
     }
   }
+
+  private func bind() {
+    imageView.rx.tapGesture()
+      .when(.recognized)
+      .bind { [weak self] _ in
+        self?.presentImagePicker()
+      }.disposed(by: disposeBag)
+  }
 }
 
 extension ViewController {
@@ -121,5 +136,35 @@ extension ViewController {
     compressTypeButton.setTitle(type.rawValue, for: .normal)
     print(type.rawValue)
   }
+
+  private func presentImagePicker() {
+    var config = PHPickerConfiguration()
+    config.selectionLimit = 1
+    config.filter = .images
+
+    let picker = PHPickerViewController(configuration: config)
+    picker.delegate = self
+    present(picker, animated: true)
+  }
+
+  private func imageDidSelected(_ image: UIImage) {
+    imageView.image = image
+  }
 }
 
+extension ViewController: PHPickerViewControllerDelegate {
+  func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+    picker.dismiss(animated: true)
+
+    let itemProvider = results.first?.itemProvider
+    if let itemProvider = itemProvider,
+       itemProvider.canLoadObject(ofClass: UIImage.self) {
+      itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+        DispatchQueue.main.async {
+          guard let selectedImage = image as? UIImage else { return }
+          self.imageDidSelected(selectedImage)
+        }
+      }
+    }
+  }
+}
