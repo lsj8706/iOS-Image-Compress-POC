@@ -65,6 +65,10 @@ final class ViewController: UIViewController {
     $0.text = "압축 후 크기: "
   }
 
+  private let timeLabel = UILabel().then {
+    $0.text = "소요 시간: "
+  }
+
   private let compressButton = UIButton(type: .system).then {
     $0.setTitle("압축", for: .normal)
     $0.setTitleColor(.black, for: .normal)
@@ -77,6 +81,7 @@ final class ViewController: UIViewController {
       qualityTextField,
       originSizeLabel,
       compressedSizeLabel,
+      timeLabel,
       compressButton
     ]
   ).then {
@@ -151,9 +156,18 @@ final class ViewController: UIViewController {
           qualityStr = "1.0"
         }
         let quality = CGFloat(Double(qualityStr)!)
-        if let data = compressor.compress(image: selectedImage, type: selectedType, quality: quality) {
-          updateCompressedSizeLabel(bytes: data.count)
-          updateCompressedImage(data)
+
+        DispatchQueue.global().async { [weak self] in
+          guard let self else { return }
+          let (time, data) = compressor.compress(image: selectedImage, type: selectedType, quality: quality)
+
+          DispatchQueue.main.async { [weak self] in
+            if let data {
+              self?.updateCompressedSizeLabel(bytes: data.count)
+              self?.updateCompressedImage(data)
+              self?.updateTimeLabel(time)
+            }
+          }
         }
       }.disposed(by: disposeBag)
   }
@@ -193,6 +207,10 @@ extension ViewController {
   private func updateCompressedSizeLabel(bytes: Int) {
     let mb = CGFloat(bytes) / CGFloat(1024 * 1024)
     compressedSizeLabel.text = "압축 후 크기: \(mb) MB"
+  }
+
+  private func updateTimeLabel(_ timeInterval: TimeInterval) {
+    timeLabel.text = "소요 시간: \(timeInterval) 초"
   }
 }
 
