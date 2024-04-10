@@ -25,9 +25,16 @@ final class ViewController: UIViewController {
 
   private let compressTypeButton = UIButton(type: .system).then {
     $0.showsMenuAsPrimaryAction = true
-    $0.backgroundColor = .systemGray5
-    $0.setTitleColor(.black, for: .normal)
     $0.setTitle("압축 방법 선택", for: .normal)
+    $0.setTitleColor(.black, for: .normal)
+  }
+
+  private let qualityTextField = UITextField().then {
+    $0.placeholder = "퀄리티를 입력해 주세요."
+    $0.keyboardType = .decimalPad
+    $0.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 44))
+    $0.leftViewMode = .always
+    $0.textAlignment = .center
   }
 
   override func viewDidLoad() {
@@ -45,10 +52,14 @@ final class ViewController: UIViewController {
 
     let menu = UIMenu(title: "CompressType", options: .displayInline, children: menuElements)
     compressTypeButton.menu = menu
+
+    [compressTypeButton, qualityTextField].forEach {
+      $0.backgroundColor = .systemGray5
+    }
   }
 
   private func setupLayout() {
-    [imageView, compressTypeButton].forEach { subView in
+    [imageView, compressTypeButton, qualityTextField].forEach { subView in
       subView.translatesAutoresizingMaskIntoConstraints = false
       view.addSubview(subView)
     }
@@ -61,6 +72,12 @@ final class ViewController: UIViewController {
 
     compressTypeButton.snp.makeConstraints { make in
       make.top.equalTo(imageView.snp.bottom).offset(20)
+      make.leading.trailing.equalToSuperview().inset(20)
+      make.height.equalTo(44)
+    }
+
+    qualityTextField.snp.makeConstraints { make in
+      make.top.equalTo(compressTypeButton.snp.bottom).offset(10)
       make.leading.trailing.equalToSuperview().inset(20)
       make.height.equalTo(44)
     }
