@@ -59,14 +59,17 @@ final class ViewController: UIViewController {
 
   private let originSizeLabel = UILabel().then {
     $0.text = "원본 크기: "
+    $0.enableCopyOnTouch()
   }
 
   private let compressedSizeLabel = UILabel().then {
     $0.text = "압축 후 크기: "
+    $0.enableCopyOnTouch()
   }
 
   private let timeLabel = UILabel().then {
     $0.text = "소요 시간: "
+    $0.enableCopyOnTouch()
   }
 
   private let compressButton = UIButton(type: .system).then {
