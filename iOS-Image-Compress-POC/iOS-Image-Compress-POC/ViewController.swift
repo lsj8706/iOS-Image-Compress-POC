@@ -25,16 +25,46 @@ final class ViewController: UIViewController {
 
   private let compressTypeButton = UIButton(type: .system).then {
     $0.showsMenuAsPrimaryAction = true
+    $0.backgroundColor = .systemGray5
     $0.setTitle("압축 방법 선택", for: .normal)
     $0.setTitleColor(.black, for: .normal)
   }
 
   private let qualityTextField = UITextField().then {
     $0.placeholder = "퀄리티를 입력해 주세요."
+    $0.backgroundColor = .systemGray5
     $0.keyboardType = .decimalPad
     $0.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 44))
     $0.leftViewMode = .always
     $0.textAlignment = .center
+  }
+
+  private let originSizeLabel = UILabel().then {
+    $0.text = "원본 크기: "
+  }
+
+  private let compressedSizeLabel = UILabel().then {
+    $0.text = "압축 후 크기: "
+  }
+
+  private let compressButton = UIButton(type: .system).then {
+    $0.setTitle("압축", for: .normal)
+    $0.setTitleColor(.black, for: .normal)
+    $0.backgroundColor = .orange
+  }
+
+  private lazy var stackView = UIStackView(
+    arrangedSubviews: [
+      compressTypeButton,
+      qualityTextField,
+      originSizeLabel,
+      compressedSizeLabel,
+      compressButton
+    ]
+  ).then {
+    $0.axis = .vertical
+    $0.spacing = 10
+    $0.distribution = .fillEqually
   }
 
   override func viewDidLoad() {
@@ -53,15 +83,20 @@ final class ViewController: UIViewController {
     let menu = UIMenu(title: "CompressType", options: .displayInline, children: menuElements)
     compressTypeButton.menu = menu
 
-    [compressTypeButton, qualityTextField].forEach {
-      $0.backgroundColor = .systemGray5
+    [compressTypeButton, qualityTextField, compressButton].forEach {
+      $0.layer.cornerRadius = 10
     }
   }
 
   private func setupLayout() {
-    [imageView, compressTypeButton, qualityTextField].forEach { subView in
+    [
+      imageView,
+      stackView
+    ].forEach { subView in
       subView.translatesAutoresizingMaskIntoConstraints = false
-      view.addSubview(subView)
+      view.addSubview(
+        subView
+      )
     }
 
     imageView.snp.makeConstraints { make in
@@ -70,15 +105,12 @@ final class ViewController: UIViewController {
       make.height.equalTo(imageView.snp.width)
     }
 
-    compressTypeButton.snp.makeConstraints { make in
+    stackView.snp.makeConstraints { make in
       make.top.equalTo(imageView.snp.bottom).offset(20)
       make.leading.trailing.equalToSuperview().inset(20)
-      make.height.equalTo(44)
     }
 
-    qualityTextField.snp.makeConstraints { make in
-      make.top.equalTo(compressTypeButton.snp.bottom).offset(10)
-      make.leading.trailing.equalToSuperview().inset(20)
+    compressTypeButton.snp.makeConstraints { make in
       make.height.equalTo(44)
     }
   }
