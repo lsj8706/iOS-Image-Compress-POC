@@ -19,6 +19,8 @@
 		0703B6002BC6A502006F09D3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0703B5FF2BC6A502006F09D3 /* SnapKit */; };
 		0703B6032BC6A51A006F09D3 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 0703B6022BC6A51A006F09D3 /* RxCocoa */; };
 		0703B6052BC6A51A006F09D3 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0703B6042BC6A51A006F09D3 /* RxSwift */; };
+		0703B6082BC6A69D006F09D3 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 0703B6072BC6A69D006F09D3 /* Then */; };
+		0703B60A2BC6A92D006F09D3 /* CompressType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B6092BC6A92D006F09D3 /* CompressType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,7 @@
 		0703B5EB2BC6A4D3006F09D3 /* iOS-Image-Compress-POCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-Image-Compress-POCUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0703B5EF2BC6A4D3006F09D3 /* iOS_Image_Compress_POCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Image_Compress_POCUITests.swift; sourceTree = "<group>"; };
 		0703B5F12BC6A4D3006F09D3 /* iOS_Image_Compress_POCUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Image_Compress_POCUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0703B6092BC6A92D006F09D3 /* CompressType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,7 @@
 				0703B6052BC6A51A006F09D3 /* RxSwift in Frameworks */,
 				0703B6032BC6A51A006F09D3 /* RxCocoa in Frameworks */,
 				0703B6002BC6A502006F09D3 /* SnapKit in Frameworks */,
+				0703B6082BC6A69D006F09D3 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,8 +109,8 @@
 		0703B5CD2BC6A4D1006F09D3 /* iOS-Image-Compress-POC */ = {
 			isa = PBXGroup;
 			children = (
-				0703B5CE2BC6A4D1006F09D3 /* AppDelegate.swift */,
-				0703B5D02BC6A4D1006F09D3 /* SceneDelegate.swift */,
+				0703B60C2BC6A93A006F09D3 /* App */,
+				0703B60B2BC6A930006F09D3 /* Compress */,
 				0703B5D22BC6A4D1006F09D3 /* ViewController.swift */,
 				0703B5D42BC6A4D1006F09D3 /* Main.storyboard */,
 				0703B5D72BC6A4D2006F09D3 /* Assets.xcassets */,
@@ -133,6 +137,23 @@
 			path = "iOS-Image-Compress-POCUITests";
 			sourceTree = "<group>";
 		};
+		0703B60B2BC6A930006F09D3 /* Compress */ = {
+			isa = PBXGroup;
+			children = (
+				0703B6092BC6A92D006F09D3 /* CompressType.swift */,
+			);
+			path = Compress;
+			sourceTree = "<group>";
+		};
+		0703B60C2BC6A93A006F09D3 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0703B5CE2BC6A4D1006F09D3 /* AppDelegate.swift */,
+				0703B5D02BC6A4D1006F09D3 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,6 +174,7 @@
 				0703B5FF2BC6A502006F09D3 /* SnapKit */,
 				0703B6022BC6A51A006F09D3 /* RxCocoa */,
 				0703B6042BC6A51A006F09D3 /* RxSwift */,
+				0703B6072BC6A69D006F09D3 /* Then */,
 			);
 			productName = "iOS-Image-Compress-POC";
 			productReference = 0703B5CB2BC6A4D1006F09D3 /* iOS-Image-Compress-POC.app */;
@@ -229,6 +251,7 @@
 			packageReferences = (
 				0703B5FE2BC6A502006F09D3 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				0703B6012BC6A51A006F09D3 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				0703B6062BC6A69D006F09D3 /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = 0703B5CC2BC6A4D1006F09D3 /* Products */;
 			projectDirPath = "";
@@ -276,6 +299,7 @@
 				0703B5D32BC6A4D1006F09D3 /* ViewController.swift in Sources */,
 				0703B5CF2BC6A4D1006F09D3 /* AppDelegate.swift in Sources */,
 				0703B5D12BC6A4D1006F09D3 /* SceneDelegate.swift in Sources */,
+				0703B60A2BC6A92D006F09D3 /* CompressType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,6 +664,14 @@
 				minimumVersion = 6.6.0;
 			};
 		};
+		0703B6062BC6A69D006F09D3 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -657,6 +689,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0703B6012BC6A51A006F09D3 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		0703B6072BC6A69D006F09D3 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0703B6062BC6A69D006F09D3 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

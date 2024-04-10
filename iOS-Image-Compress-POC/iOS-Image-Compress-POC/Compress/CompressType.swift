@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CompressType {
+enum CompressType: String, CaseIterable {
   case jpeg
   case png
 }
