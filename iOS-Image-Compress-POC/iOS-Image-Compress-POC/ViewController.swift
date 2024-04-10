@@ -153,6 +153,7 @@ final class ViewController: UIViewController {
         let quality = CGFloat(Double(qualityStr)!)
         if let data = compressor.compress(image: selectedImage, type: selectedType, quality: quality) {
           updateCompressedSizeLabel(bytes: data.count)
+          updateCompressedImage(data)
         }
       }.disposed(by: disposeBag)
   }
@@ -176,6 +177,12 @@ extension ViewController {
 
   private func imageDidSelected(_ image: UIImage) {
     imageView.image = image
+  }
+
+  private func updateCompressedImage(_ data: Data) {
+    print("압축 결과 반영")
+    let newImage = UIImage(data: data)
+    imageView.image = newImage
   }
 
   private func updateOriginSizeLabel(bytes: Int) {
