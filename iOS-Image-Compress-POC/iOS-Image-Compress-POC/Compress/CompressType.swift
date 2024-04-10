@@ -10,4 +10,5 @@ import Foundation
 enum CompressType: String, CaseIterable {
   case jpeg
   case png
+  case webp
 }

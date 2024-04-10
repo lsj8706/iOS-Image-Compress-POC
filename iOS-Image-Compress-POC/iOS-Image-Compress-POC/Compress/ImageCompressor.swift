@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import SDWebImageWebPCoder
 
 final class ImageCompressor {
   func compress(image: UIImage, type: CompressType, quality: CGFloat) -> (TimeInterval, Data?) {
     switch type {
     case .jpeg: return compressToJpeg(image: image, quality: quality)
     case .png: return compressToPng(image: image)
+    case .webp: return compressToWebp(image: image, quality: quality)
     }
   }
 
@@ -24,6 +26,15 @@ final class ImageCompressor {
   private func compressToPng(image: UIImage) -> (TimeInterval, Data?) {
     progressTime {
       image.pngData()
+    }
+  }
+
+  private func compressToWebp(image: UIImage, quality: CGFloat) -> (TimeInterval, Data?) {
+    progressTime {
+      let encoder = SDImageWebPCoder.shared
+      let quality = Float(quality)
+      let data = encoder.encodedData(with: image, format: .webP, options: [.encodeCompressionQuality: quality])
+      return data
     }
   }
 
