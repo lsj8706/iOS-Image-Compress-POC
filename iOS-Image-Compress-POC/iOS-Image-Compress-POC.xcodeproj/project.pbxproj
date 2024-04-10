@@ -25,6 +25,7 @@
 		0703B6112BC6BB70006F09D3 /* ImageCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B6102BC6BB70006F09D3 /* ImageCompressor.swift */; };
 		0703B6142BC6C7EA006F09D3 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B6132BC6C7EA006F09D3 /* UILabel+.swift */; };
 		0703B61A2BC6D167006F09D3 /* SDWebImageWebPCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 0703B6192BC6D167006F09D3 /* SDWebImageWebPCoder */; };
+		0703B61C2BC6D308006F09D3 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B61B2BC6D308006F09D3 /* Data+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		0703B6092BC6A92D006F09D3 /* CompressType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressType.swift; sourceTree = "<group>"; };
 		0703B6102BC6BB70006F09D3 /* ImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompressor.swift; sourceTree = "<group>"; };
 		0703B6132BC6C7EA006F09D3 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		0703B61B2BC6D308006F09D3 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				0703B6132BC6C7EA006F09D3 /* UILabel+.swift */,
+				0703B61B2BC6D308006F09D3 /* Data+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			files = (
 				0703B6142BC6C7EA006F09D3 /* UILabel+.swift in Sources */,
 				0703B5D32BC6A4D1006F09D3 /* ViewController.swift in Sources */,
+				0703B61C2BC6D308006F09D3 /* Data+.swift in Sources */,
 				0703B5CF2BC6A4D1006F09D3 /* AppDelegate.swift in Sources */,
 				0703B5D12BC6A4D1006F09D3 /* SceneDelegate.swift in Sources */,
 				0703B6112BC6BB70006F09D3 /* ImageCompressor.swift in Sources */,
