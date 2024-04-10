@@ -150,19 +150,39 @@ extension ViewController {
   private func imageDidSelected(_ image: UIImage) {
     imageView.image = image
   }
+
+  private func updateOriginSizeLabel(bytes: Int) {
+    let mb = CGFloat(bytes) / CGFloat(1024 * 1024)
+    originSizeLabel.text = "원본 크기: \(mb) MB"
+  }
 }
 
 extension ViewController: PHPickerViewControllerDelegate {
   func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
     picker.dismiss(animated: true)
 
-    let itemProvider = results.first?.itemProvider
-    if let itemProvider = itemProvider,
-       itemProvider.canLoadObject(ofClass: UIImage.self) {
-      itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+    guard let itemProvider = results.first?.itemProvider else { return }
+
+    if itemProvider.canLoadObject(ofClass: UIImage.self) {
+      itemProvider.loadObject(ofClass: UIImage.self) { image, _ in
         DispatchQueue.main.async {
           guard let selectedImage = image as? UIImage else { return }
           self.imageDidSelected(selectedImage)
+        }
+      }
+    }
+
+    if itemProvider.canLoadObject(ofClass: UIImage.self) {
+      itemProvider.loadDataRepresentation(forTypeIdentifier: UTType.image.identifier) { data, _ in
+        guard let imageData = data else {
+          print("데이터로 변환 실패")
+          return
+        }
+        // imageData의 크기를 바이트 단위로 얻음
+        let imageSize = imageData.count
+
+        DispatchQueue.main.async {
+          self.updateOriginSizeLabel(bytes: imageSize)
         }
       }
     }
