@@ -20,6 +20,20 @@ final class ViewController: UIViewController {
 
   private let compressTypes = CompressType.allCases
   private let disposeBag = DisposeBag()
+  private let compressor = ImageCompressor()
+
+  private var selectedImage: UIImage? {
+    didSet {
+      if let selectedImage {
+        self.imageDidSelected(selectedImage)
+      }
+    }
+  }
+  private var selectedType: CompressType = .png {
+    didSet {
+      compressTypeChanged(type: selectedType)
+    }
+  }
 
   // MARK: - UI
 
@@ -30,12 +44,12 @@ final class ViewController: UIViewController {
   private let compressTypeButton = UIButton(type: .system).then {
     $0.showsMenuAsPrimaryAction = true
     $0.backgroundColor = .systemGray5
-    $0.setTitle("압축 방법 선택", for: .normal)
+    $0.setTitle("압축 방법을 선택해 주세요. (default: png)", for: .normal)
     $0.setTitleColor(.black, for: .normal)
   }
 
   private let qualityTextField = UITextField().then {
-    $0.placeholder = "퀄리티를 입력해 주세요."
+    $0.placeholder = "퀄리티를 입력해 주세요. (default: 1.0)"
     $0.backgroundColor = .systemGray5
     $0.keyboardType = .decimalPad
     $0.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 44))
@@ -83,7 +97,7 @@ final class ViewController: UIViewController {
   private func setupUI() {
     let menuElements = compressTypes.map { compressType in
       UIAction(title: compressType.rawValue, handler: { _ in
-        self.compressTypeChanged(type: compressType)
+        self.selectedType = compressType
       })
     }
 
@@ -128,6 +142,19 @@ final class ViewController: UIViewController {
       .bind { [weak self] _ in
         self?.presentImagePicker()
       }.disposed(by: disposeBag)
+
+    compressButton.rx.tap
+      .bind { [weak self] _ in
+        guard let self, let selectedImage else { return }
+        var qualityStr = self.qualityTextField.text ?? "1.0"
+        if qualityStr.isEmpty {
+          qualityStr = "1.0"
+        }
+        let quality = CGFloat(Double(qualityStr)!)
+        if let data = compressor.compress(image: selectedImage, type: selectedType, quality: quality) {
+          updateCompressedSizeLabel(bytes: data.count)
+        }
+      }.disposed(by: disposeBag)
   }
 }
 
@@ -155,6 +182,11 @@ extension ViewController {
     let mb = CGFloat(bytes) / CGFloat(1024 * 1024)
     originSizeLabel.text = "원본 크기: \(mb) MB"
   }
+
+  private func updateCompressedSizeLabel(bytes: Int) {
+    let mb = CGFloat(bytes) / CGFloat(1024 * 1024)
+    compressedSizeLabel.text = "압축 후 크기: \(mb) MB"
+  }
 }
 
 extension ViewController: PHPickerViewControllerDelegate {
@@ -167,7 +199,7 @@ extension ViewController: PHPickerViewControllerDelegate {
       itemProvider.loadObject(ofClass: UIImage.self) { image, _ in
         DispatchQueue.main.async {
           guard let selectedImage = image as? UIImage else { return }
-          self.imageDidSelected(selectedImage)
+          self.selectedImage = selectedImage
         }
       }
     }

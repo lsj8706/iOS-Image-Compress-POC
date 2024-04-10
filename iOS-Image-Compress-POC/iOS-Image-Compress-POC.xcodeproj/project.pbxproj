@@ -22,6 +22,7 @@
 		0703B6082BC6A69D006F09D3 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 0703B6072BC6A69D006F09D3 /* Then */; };
 		0703B60A2BC6A92D006F09D3 /* CompressType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B6092BC6A92D006F09D3 /* CompressType.swift */; };
 		0703B60F2BC6B36C006F09D3 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 0703B60E2BC6B36C006F09D3 /* RxGesture */; };
+		0703B6112BC6BB70006F09D3 /* ImageCompressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B6102BC6BB70006F09D3 /* ImageCompressor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		0703B5EF2BC6A4D3006F09D3 /* iOS_Image_Compress_POCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Image_Compress_POCUITests.swift; sourceTree = "<group>"; };
 		0703B5F12BC6A4D3006F09D3 /* iOS_Image_Compress_POCUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Image_Compress_POCUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0703B6092BC6A92D006F09D3 /* CompressType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressType.swift; sourceTree = "<group>"; };
+		0703B6102BC6BB70006F09D3 /* ImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompressor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 		0703B60B2BC6A930006F09D3 /* Compress */ = {
 			isa = PBXGroup;
 			children = (
+				0703B6102BC6BB70006F09D3 /* ImageCompressor.swift */,
 				0703B6092BC6A92D006F09D3 /* CompressType.swift */,
 			);
 			path = Compress;
@@ -303,6 +306,7 @@
 				0703B5D32BC6A4D1006F09D3 /* ViewController.swift in Sources */,
 				0703B5CF2BC6A4D1006F09D3 /* AppDelegate.swift in Sources */,
 				0703B5D12BC6A4D1006F09D3 /* SceneDelegate.swift in Sources */,
+				0703B6112BC6BB70006F09D3 /* ImageCompressor.swift in Sources */,
 				0703B60A2BC6A92D006F09D3 /* CompressType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
