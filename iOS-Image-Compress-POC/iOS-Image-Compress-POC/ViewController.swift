@@ -198,8 +198,15 @@ extension ViewController {
 
   private func updateCompressedImage(_ data: Data) {
     print("압축 결과 반영")
-    let newImage = UIImage(data: data)
+    guard let newImage = UIImage(data: data) else { return }
     imageView.image = newImage
+
+    let heightInPoints = newImage.size.height
+    let heightInPixels = heightInPoints * newImage.scale
+
+    let widthInPoints = newImage.size.width
+    let widthInPixels = widthInPoints * newImage.scale
+    print(widthInPixels, heightInPixels)
   }
 
   private func updateOriginSizeLabel(bytes: Int) {
