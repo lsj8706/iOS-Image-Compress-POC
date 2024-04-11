@@ -79,6 +79,12 @@ final class ViewController: UIViewController {
     $0.backgroundColor = .orange
   }
 
+  private let saveButton = UIButton(type: .system).then {
+    $0.setTitle("저장", for: .normal)
+    $0.setTitleColor(.black, for: .normal)
+    $0.backgroundColor = .orange
+  }
+
   private lazy var stackView = UIStackView(
     arrangedSubviews: [
       compressTypeButton,
@@ -86,7 +92,8 @@ final class ViewController: UIViewController {
       originSizeLabel,
       compressedSizeLabel,
       timeLabel,
-      compressButton
+      compressButton,
+      saveButton
     ]
   ).then {
     $0.axis = .vertical
@@ -113,7 +120,7 @@ final class ViewController: UIViewController {
     let menu = UIMenu(title: "CompressType", options: .displayInline, children: menuElements)
     compressTypeButton.menu = menu
 
-    [compressTypeButton, qualityTextField, compressButton].forEach {
+    [compressTypeButton, qualityTextField, compressButton, saveButton].forEach {
       $0.layer.cornerRadius = 10
     }
   }
@@ -173,6 +180,12 @@ final class ViewController: UIViewController {
             }
           }
         }
+      }.disposed(by: disposeBag)
+
+    saveButton.rx.tap
+      .bind { [weak self] _ in
+        guard let self, let currentImage = imageView.image else { return }
+        UIImageWriteToSavedPhotosAlbum(currentImage, nil, nil, nil)
       }.disposed(by: disposeBag)
   }
 }
