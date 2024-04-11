@@ -26,6 +26,8 @@
 		0703B6142BC6C7EA006F09D3 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B6132BC6C7EA006F09D3 /* UILabel+.swift */; };
 		0703B61A2BC6D167006F09D3 /* SDWebImageWebPCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 0703B6192BC6D167006F09D3 /* SDWebImageWebPCoder */; };
 		0703B61C2BC6D308006F09D3 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B61B2BC6D308006F09D3 /* Data+.swift */; };
+		0703B6212BC79164006F09D3 /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B6202BC79164006F09D3 /* ImageResizer.swift */; };
+		0703B6232BC79180006F09D3 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B6222BC79180006F09D3 /* UIImage+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		0703B6102BC6BB70006F09D3 /* ImageCompressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompressor.swift; sourceTree = "<group>"; };
 		0703B6132BC6C7EA006F09D3 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		0703B61B2BC6D308006F09D3 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
+		0703B6202BC79164006F09D3 /* ImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
+		0703B6222BC79180006F09D3 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 		0703B5CD2BC6A4D1006F09D3 /* iOS-Image-Compress-POC */ = {
 			isa = PBXGroup;
 			children = (
+				0703B61F2BC79158006F09D3 /* Resize */,
 				0703B6122BC6C7E5006F09D3 /* Utils */,
 				0703B60C2BC6A93A006F09D3 /* App */,
 				0703B60B2BC6A930006F09D3 /* Compress */,
@@ -171,8 +176,17 @@
 			children = (
 				0703B6132BC6C7EA006F09D3 /* UILabel+.swift */,
 				0703B61B2BC6D308006F09D3 /* Data+.swift */,
+				0703B6222BC79180006F09D3 /* UIImage+.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		0703B61F2BC79158006F09D3 /* Resize */ = {
+			isa = PBXGroup;
+			children = (
+				0703B6202BC79164006F09D3 /* ImageResizer.swift */,
+			);
+			path = Resize;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,7 +339,9 @@
 				0703B5D32BC6A4D1006F09D3 /* ViewController.swift in Sources */,
 				0703B61C2BC6D308006F09D3 /* Data+.swift in Sources */,
 				0703B5CF2BC6A4D1006F09D3 /* AppDelegate.swift in Sources */,
+				0703B6212BC79164006F09D3 /* ImageResizer.swift in Sources */,
 				0703B5D12BC6A4D1006F09D3 /* SceneDelegate.swift in Sources */,
+				0703B6232BC79180006F09D3 /* UIImage+.swift in Sources */,
 				0703B6112BC6BB70006F09D3 /* ImageCompressor.swift in Sources */,
 				0703B60A2BC6A92D006F09D3 /* CompressType.swift in Sources */,
 			);

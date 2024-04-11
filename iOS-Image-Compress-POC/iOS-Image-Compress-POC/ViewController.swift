@@ -21,6 +21,7 @@ final class ViewController: UIViewController {
   private let compressTypes = CompressType.allCases
   private let disposeBag = DisposeBag()
   private let compressor = ImageCompressor()
+  private let resizer = ImageResizer()
 
   private var selectedImage: UIImage? {
     didSet {
@@ -194,18 +195,22 @@ extension ViewController {
 
   private func imageDidSelected(_ image: UIImage) {
     imageView.image = image
+    printPixels(image)
   }
 
   private func updateCompressedImage(_ data: Data) {
     print("압축 결과 반영")
     guard let newImage = UIImage(data: data) else { return }
     imageView.image = newImage
+    printPixels(newImage)
+  }
 
-    let heightInPoints = newImage.size.height
-    let heightInPixels = heightInPoints * newImage.scale
+  private func printPixels(_ image: UIImage) {
+    let heightInPoints = image.size.height
+    let heightInPixels = heightInPoints * image.scale
 
-    let widthInPoints = newImage.size.width
-    let widthInPixels = widthInPoints * newImage.scale
+    let widthInPoints = image.size.width
+    let widthInPixels = widthInPoints * image.scale
     print(widthInPixels, heightInPixels)
   }
 
@@ -234,7 +239,8 @@ extension ViewController: PHPickerViewControllerDelegate {
       itemProvider.loadObject(ofClass: UIImage.self) { image, _ in
         DispatchQueue.main.async {
           guard let selectedImage = image as? UIImage else { return }
-          self.selectedImage = selectedImage
+          let resizedImage = self.resizer.process(selectedImage)
+          self.selectedImage = resizedImage
         }
       }
     }
