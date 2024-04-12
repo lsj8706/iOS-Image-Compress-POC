@@ -39,9 +39,10 @@ final class ImageCompressor {
   }
 
   private func progressTime(_ closure: () -> Data?) -> (TimeInterval, Data?) {
-    let start = CFAbsoluteTimeGetCurrent()
+    let start = DispatchTime.now()
     let data = closure()
-    let diff = CFAbsoluteTimeGetCurrent() - start
-    return (diff, data)
+    let end = DispatchTime.now()
+    let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
+    return (Double(nanoTime) / 1_000_000_000, data)
   }
 }
