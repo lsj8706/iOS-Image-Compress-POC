@@ -110,6 +110,10 @@ final class ViewController: UIViewController {
     bind()
   }
 
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    view.endEditing(true)
+  }
+
   private func setupUI() {
     let menuElements = compressTypes.map { compressType in
       UIAction(title: compressType.rawValue, handler: { _ in
