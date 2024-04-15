@@ -28,6 +28,7 @@
 		0703B61C2BC6D308006F09D3 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B61B2BC6D308006F09D3 /* Data+.swift */; };
 		0703B6212BC79164006F09D3 /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B6202BC79164006F09D3 /* ImageResizer.swift */; };
 		0703B6232BC79180006F09D3 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0703B6222BC79180006F09D3 /* UIImage+.swift */; };
+		0703B6502BCD220E006F09D3 /* WebP in Frameworks */ = {isa = PBXBuildFile; productRef = 0703B64F2BCD220E006F09D3 /* WebP */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 				0703B61A2BC6D167006F09D3 /* SDWebImageWebPCoder in Frameworks */,
 				0703B60F2BC6B36C006F09D3 /* RxGesture in Frameworks */,
 				0703B6002BC6A502006F09D3 /* SnapKit in Frameworks */,
+				0703B6502BCD220E006F09D3 /* WebP in Frameworks */,
 				0703B6082BC6A69D006F09D3 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,6 +214,7 @@
 				0703B6072BC6A69D006F09D3 /* Then */,
 				0703B60E2BC6B36C006F09D3 /* RxGesture */,
 				0703B6192BC6D167006F09D3 /* SDWebImageWebPCoder */,
+				0703B64F2BCD220E006F09D3 /* WebP */,
 			);
 			productName = "iOS-Image-Compress-POC";
 			productReference = 0703B5CB2BC6A4D1006F09D3 /* iOS-Image-Compress-POC.app */;
@@ -291,6 +294,7 @@
 				0703B6062BC6A69D006F09D3 /* XCRemoteSwiftPackageReference "Then" */,
 				0703B60D2BC6B36C006F09D3 /* XCRemoteSwiftPackageReference "RxGesture" */,
 				0703B6182BC6D167006F09D3 /* XCRemoteSwiftPackageReference "SDWebImageWebPCoder" */,
+				0703B64E2BCD220E006F09D3 /* XCRemoteSwiftPackageReference "Swift-WebP" */,
 			);
 			productRefGroup = 0703B5CC2BC6A4D1006F09D3 /* Products */;
 			projectDirPath = "";
@@ -732,6 +736,14 @@
 				minimumVersion = 0.14.5;
 			};
 		};
+		0703B64E2BCD220E006F09D3 /* XCRemoteSwiftPackageReference "Swift-WebP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/chbeer/Swift-WebP.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -764,6 +776,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0703B6182BC6D167006F09D3 /* XCRemoteSwiftPackageReference "SDWebImageWebPCoder" */;
 			productName = SDWebImageWebPCoder;
+		};
+		0703B64F2BCD220E006F09D3 /* WebP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0703B64E2BCD220E006F09D3 /* XCRemoteSwiftPackageReference "Swift-WebP" */;
+			productName = WebP;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

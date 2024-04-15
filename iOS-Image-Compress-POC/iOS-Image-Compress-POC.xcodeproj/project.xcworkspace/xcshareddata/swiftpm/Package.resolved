@@ -55,6 +55,15 @@
       }
     },
     {
+      "identity" : "swift-webp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/chbeer/Swift-WebP.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "23e61fa7373e8cfe2af8fd9e35221306bbc00f0f"
+      }
+    },
+    {
       "identity" : "then",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/devxoul/Then.git",

@@ -9,7 +9,7 @@ import UIKit
 
 final class ImageResizer {
   private enum Const {
-    static let uploadImageSize = CGSize(width: 1440, height: 1440)
+    static let uploadImageSize = CGSize(width: 1920, height: 1920)
   }
 
   /// 업로드를 위해 사전에 정의한 이미지 최대 사이즈에 맞추어 resizing을 수행해요.
