@@ -14,7 +14,7 @@ final class ImageCompressor {
     switch type {
     case .jpeg: return compressToJpeg(image: image, quality: quality)
     case .png: return compressToPng(image: image)
-    case .webp: return compressToWebp(image: image, quality: quality)
+    case .webp: return compressToWebpWithSDWebImage(image: image, quality: quality)
     }
   }
 
@@ -34,7 +34,20 @@ final class ImageCompressor {
     progressTime {
       let encoder = SDImageWebPCoder.shared
       let quality = Float(quality)
-      let data = encoder.encodedData(with: image, format: .webP, options: [.encodeCompressionQuality: quality])
+      let data = encoder.encodedData(
+        with: image,
+        format: .webP,
+        options: [
+          .encodeCompressionQuality: quality,
+          .encodeFirstFrameOnly: true,
+          .encodeWebPMethod: NSNumber(value: 0),
+          .encodeWebPThreadLevel: 0,
+          .encodeWebPPass: NSNumber(value: 1),
+          .encodeWebPLossless: false,
+          .encodeWebPPreprocessing: false,
+          .encodeBackgroundColor: UIColor.white,
+        ]
+      )
       return data
     }
   }

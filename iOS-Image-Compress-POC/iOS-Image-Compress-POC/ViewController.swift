@@ -56,6 +56,7 @@ final class ViewController: UIViewController {
     $0.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 44))
     $0.leftViewMode = .always
     $0.textAlignment = .center
+    $0.text = "0.9"
   }
 
   private let originSizeLabel = UILabel().then {
